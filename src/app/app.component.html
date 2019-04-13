@@ -1,8 +1,8 @@
 <div class="container-fluid mcq-wrapper">
 
   <div class="row welcome-wrapper" *ngIf="visibleBlock == 'welcome'">
-    <h1 class="col-12 title">Welcome to MCQ</h1>
-    <div class="col-6 warning-msg">
+    <h1 class="col-12">Welcome to MCQ</h1>
+    <div class="col-6">
       Do not minimize the current window.<br>
       Do not open new browser tab/window.<br>
       <span class="text-danger">Doing above will auto-submit your exam.</span><br>
@@ -17,7 +17,7 @@
   </div>
 
   <div class="row questionnaire-wrapper" *ngIf="visibleBlock == 'questionnaire'">
-    <h1 class="col-12 title">Welcome {{username}}</h1>
+    <h1 class="col-12 title">Hi {{username}} !</h1>
     <div class="col-12 top-nav">
       <span class="timer" [ngClass]="timerClass">
         Time Left

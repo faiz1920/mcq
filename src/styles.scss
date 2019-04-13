@@ -22,46 +22,7 @@ $danger: #dc3545;
 $light: #f8f9fa;
 $dark: #343a40;
 $gray-light:#d3d3d3;
-
-
-//  mixin
-//  text
-@mixin text($text, $hover, $back) {
-    color: $text;
-
-    &:hover {
-        color: $hover;
-        background-color: $back;
-    }
-}
-
-
-//  variables
-//  $<variable name>:<value>;
-$font-family : Arial,
-Helvetica,
-sans-serif;
 $text-color :#000000;
 $hover-color : #ffffff;
 $back-color : #2a91e1;
 
-
-* {
-    font-family: $font-family;
-    color: $text-color;
-}
-
-.interact {
-    @include text($text-color, $hover-color, $back-color);
-
-}
-
-html,
-body {
-    height: 100%;
-}
-
-body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-}

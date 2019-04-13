@@ -2,8 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
 import * as pluginDataLabels from 'chartjs-plugin-labels';
-
-
 @Component({
   selector: 'app-pie-chart',
   templateUrl: './pie-chart.component.html',
@@ -26,17 +24,18 @@ export class PieChartComponent implements OnInit {
     },
     tooltips: {
       callbacks: {
-        label: (tooltipItem, data) => {
-          let total = data.datasets[0].data.reduce((t, n) => { return t + n });
-          let label = data.labels[tooltipItem.index] + ' : ' + (data.datasets[0].data[tooltipItem.index] / total * 100).toFixed(2) + '% ';
-          label += '(' + data.datasets[0].data[tooltipItem.index] + ')';
+        label: (tooltipItem, chartData: any) => {
+          let data = chartData.datasets[0].data;
+          let total = data.reduce((t, n) => t + n);
+          let label = chartData.labels[tooltipItem.index] + ' : ' + (data[tooltipItem.index] / total * 100).toFixed(2) + '% ';
+          label += '(' + data[tooltipItem.index] + ')';
           return label;
         }
       }
     }
   };
   public pieChartLabels: Label[] = ['Correct', 'Wrong', 'Un-Attended'];
-  public pieChartData: number[] = [300, 500, 100];
+  public pieChartData: number[] = [0, 0, 0];
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartPlugins = [pluginDataLabels];

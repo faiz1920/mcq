@@ -1,17 +1,8 @@
 @import "../styles.scss";
 
 .mcq-wrapper {
-    // padding: 20px;
-
     .welcome-wrapper {
         padding: 15px;
-
-        .title {}
-
-        .warning-msg {
-            // padding: 20px;
-            // font-weight: bold;
-        }
 
         .start-btn {
             margin: 10px 0;
@@ -39,8 +30,6 @@
                 display: flex;
                 border-radius: 0.25em;
                 cursor: pointer;
-
-
             }
         }
 
@@ -58,17 +47,14 @@
 
                 &.box-unattended {
                     background-color: $gray-light;
-
                 }
 
                 &.box-attended {
                     background-color: $green;
-
                 }
 
                 &.box-current {
                     background-color: $primary;
-
                 }
             }
         }
@@ -128,7 +114,9 @@
 
         }
 
-        .success {}
+        .success {
+            margin: 0 10px;
+        }
 
     }
 
@@ -139,7 +127,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-
         }
 
     }

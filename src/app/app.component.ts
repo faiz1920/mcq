@@ -10,6 +10,7 @@ import answer from '../data/answers.json';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent implements OnInit {
   currentIndex = 0;
   answer;
@@ -26,12 +27,12 @@ export class AppComponent implements OnInit {
     hours: 1,
     minutes: 0,
     seconds: 0
+  };
 
-  }
-  totalTime: number = parseInt(JSON.stringify((this.timer.hours * 60 * 60) + (this.timer.minutes * 60) + this.timer.seconds));
+  totalTime: number = 0;
   interval;
   timerClass: string = 'bg-success';
-  unAttended;
+  unAttended = [];
   questionnaire: boolean = false;
   username: string;
   userError: boolean = false;
@@ -42,25 +43,14 @@ export class AppComponent implements OnInit {
   constructor(private appService: AppService) { }
 
   ngOnInit() {
-
-    // this.appService.getQuestions().subscribe((res: any[]) => {
-    //   console.log(res);
-    // });
-
     this.answer = answer.answer;
     this.questions = questions.questions;
-    // this.currentQuestion = this.questions[this.currentIndex];
-
-
-    //after all initilization start timer
-    // setTimeout(() => { this.startTimer(); }, 5000);
-
+    this.totalTime = (this.timer.hours * 60 * 60) + (this.timer.minutes * 60) + this.timer.seconds;
 
     // checking window events
     window.onblur = this.windowMinimized.bind(this);
-    window.onfocus = this.windowFocus.bind(this);
-
   }
+
   startMCQ() {
     this.userError = false;
     if (!this.username) {
@@ -71,18 +61,15 @@ export class AppComponent implements OnInit {
       this.startTimer();
     }
   }
+
   windowMinimized() {
-    console.log('windowMinimized');
-    if (this.visibleBlock == 'questionnaire') {
+    if (this.visibleBlock === 'questionnaire') {
       this.warningDialog = true;
       clearInterval(this.interval);
       setTimeout(() => { this.submit(true); }, 5000);
     }
+  }
 
-  }
-  windowFocus() {
-    console.log('windowFocus');
-  }
   get enableSubmit() {
     if (this.currentIndex === this.questions.length - 1) { return true; } else { return false; }
   }
@@ -123,12 +110,11 @@ export class AppComponent implements OnInit {
       this.currentIndex = this.unAttended[0];
       this.requiredError = true;
     } else {
-      console.log(JSON.stringify(this.questions));
       this.unAttended = [];
       this.questions.forEach((e, i) => {
         if (e.answer) {
-          let x = this.getIndex(e.answer.aId, this.answer);
-          if (x) {
+          // let x = this.getIndex(e.answer.aId, this.answer);
+          if (this.getIndex(e.answer.aId, this.answer)) {
             this.result.correct.push(e);
           } else {
             this.result.wrong.push(e);
@@ -141,8 +127,6 @@ export class AppComponent implements OnInit {
       this.result.data = [this.result.correct.length, this.result.wrong.length, this.result.unattended.length]
 
       this.result.score = ((this.result.correct.length / this.questions.length) * 100).toFixed(2);
-      console.log(this.result);
-      console.log(this.unAttended);
       clearInterval(this.interval);
       this.visibleBlock = 'result';
     }
@@ -156,13 +140,12 @@ export class AppComponent implements OnInit {
       }
     });
   }
+
   getIndex(aId, array) {
     // for (var i = 0; i < array.length; i++) {
     for (let i in array) {
       if (array[i].aId === aId) {
         return true;
-        // return array[i];
-        // return i;
       }
     }
   }
@@ -171,7 +154,6 @@ export class AppComponent implements OnInit {
     this.timer.hours--;
     this.timer.minutes = 60;
     this.interval = setInterval(() => {
-
       if (this.timer.seconds > 0) {
         this.timer.seconds--;
       } else {
@@ -182,33 +164,22 @@ export class AppComponent implements OnInit {
           this.timer.hours--;
           this.timer.minutes = 59;
         }
-
         if (this.timer.hours < 0) {
           // alert('Time Up');
           this.timer.hours = 0;
           this.timer.minutes = 0;
           this.timer.seconds = 0;
           this.submit(true);
-          // clearInterval(this.interval);
         }
       }
-
-
       //check remaining time
       let rem = (this.timer.hours * 60 * 60) + (this.timer.minutes * 60) + this.timer.seconds;
-      // console.log('rem...' + rem);
       if (((rem / this.totalTime) * 100) < 20) {
         this.timerClass = 'bg-danger';
       } else if (((rem / this.totalTime) * 100) < 50) {
         this.timerClass = 'bg-warning';
       }
-
-
     }, 1000);
-  }
-
-  pauseTimer() {
-    clearInterval(this.interval);
   }
 }
 
