@@ -1,0 +1,158 @@
+{
+    "questions": [
+        {
+            "qId": 1000,
+            "question": "For which of the following disciplines is Nobel Prize awarded?",
+            "options": [
+                {
+                    "aId": 1001,
+                    "option": "Physics and Chemistry"
+                },
+                {
+                    "aId": 1002,
+                    "option": "Physiology or Medicine"
+                },
+                {
+                    "aId": 1003,
+                    "option": "Literature, Peace and Economics"
+                },
+                {
+                    "aId": 1004,
+                    "option": "All of the above"
+                }
+            ]
+        },
+        {
+            "qId": 1010,
+            "question": "Grand Central Terminal, Park Avenue, New York is the world’s",
+            "options": [
+                {
+                    "aId": 1011,
+                    "option": "largest railway station"
+                },
+                {
+                    "aId": 1012,
+                    "option": "highest railway station"
+                },
+                {
+                    "aId": 1013,
+                    "option": "longest railway station"
+                },
+                {
+                    "aId": 1014,
+                    "option": "None of the above"
+                }
+            ]
+        },
+        {
+            "qId": 1020,
+            "question": "Fastest shorthand writer was",
+            "options": [
+                {
+                    "aId": 1021,
+                    "option": "Khudada Khan"
+                },
+                {
+                    "aId": 1022,
+                    "option": "J.R.D. Tata"
+                },
+                {
+                    "aId": 1023,
+                    "option": "J.M. Tagore"
+                },
+                {
+                    "aId": 1024,
+                    "option": "Dr. G. D. Bist"
+                }
+            ]
+        },
+        {
+            "qId": 1030,
+            "question": "Entomology is the science that studies",
+            "options": [
+                {
+                    "aId": 1031,
+                    "option": "The formation of rocks"
+                },
+                {
+                    "aId": 1032,
+                    "option": "The origin and history of technical and scientific terms"
+                },
+                {
+                    "aId": 1033,
+                    "option": "Insects"
+                },
+                {
+                    "aId": 1034,
+                    "option": "Behavior of human beings"
+                }
+            ]
+        },
+        {
+            "qId": 1040,
+            "question": "Golf player Vijay Singh belongs to which country?",
+            "options": [
+                {
+                    "aId": 1041,
+                    "option": "UK"
+                },
+                {
+                    "aId": 1042,
+                    "option": "Fiji"
+                },
+                {
+                    "aId": 1043,
+                    "option": "India"
+                },
+                {
+                    "aId": 1044,
+                    "option": "USA"
+                }
+            ]
+        },
+        {
+            "qId": 1050,
+            "question": "Epsom (England) is the place associated with",
+            "options": [
+                {
+                    "aId": 1051,
+                    "option": "Polo"
+                },
+                {
+                    "aId": 1052,
+                    "option": "Shooting"
+                },
+                {
+                    "aId": 1053,
+                    "option": "Snooker"
+                },
+                {
+                    "aId": 1054,
+                    "option": "Horse racing"
+                }
+            ]
+        },
+        {
+            "qId": 1060,
+            "question": "Eritrea, which became the 182nd member of the UN in 1993, is in the continent of",
+            "options": [
+                {
+                    "aId": 1061,
+                    "option": "Australia"
+                },
+                {
+                    "aId": 1062,
+                    "option": "Europe"
+                },
+                {
+                    "aId": 1063,
+                    "option": "Asia"
+                },
+                {
+                    "aId": 1064,
+                    "option": "Africa"
+                }
+            ]
+        }
+    ]
+}

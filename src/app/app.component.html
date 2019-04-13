@@ -1,0 +1,73 @@
+<div class="container-fluid mcq-wrapper">
+
+  <div class="row welcome-wrapper" *ngIf="visibleBlock == 'welcome'">
+    <h1 class="col-12 title">Welcome to MCQ</h1>
+    <div class="col-6 warning-msg">
+      Do not minimize the current window.<br>
+      Do not open new browser tab/window.<br>
+      <span class="text-danger">Doing above will auto-submit your exam.</span><br>
+      All Questions are <strong>Mandatory</strong>
+    </div>
+    <div class="col-6 ">
+      <div *ngIf="userError" class="alert alert-danger">Enter Name !</div>
+      <input type="text" class="form-control" placeholder="Name" [(ngModel)]="username" required>
+      <button class="btn btn-primary start-btn" (click)="startMCQ()">Start</button>
+
+    </div>
+  </div>
+
+  <div class="row questionnaire-wrapper" *ngIf="visibleBlock == 'questionnaire'">
+    <h1 class="col-12 title">Welcome {{username}}</h1>
+    <div class="col-12 top-nav">
+      <span class="timer" [ngClass]="timerClass">
+        Time Left
+        {{timer.hours < 10 ? '0':''}}{{timer.hours}}:{{timer.minutes < 10 ? '0':''}}{{timer.minutes}}:{{timer.seconds < 10 ? '0':''}}{{timer.seconds}}
+      </span>
+      <ul class="quick-nav">
+        <li class="question"
+          [ngClass]="currentIndex === i ? 'bg-primary text-white' : '' || n.answer ? 'bg-success text-white' : '' "
+          *ngFor="let n of questions;let i = index" (click)="jump(i)">
+          {{i+1}}
+        </li>
+      </ul>
+      <div class="help-nav">
+        <span class="box box-unattended"></span>Un-Attended
+        <span class="box box-attended"></span>Attended
+        <span class="box box-current"></span>Current
+      </div>
+
+    </div>
+
+    <div class="col-12 question-block">
+      <div *ngIf="requiredError" class="alert alert-danger">Question is required!</div>
+      <label class="question">{{currentQuestion.question}}</label>
+      <ul class="options">
+        <li class="option"
+          [ngClass]=" currentQuestion.answer ? currentQuestion.answer.aId === option.aId ? 'active' : '' : '' "
+          *ngFor="let option of currentQuestion.options;let i = index" (click)="selectOption(currentQuestion,option)">
+          {{i+1}}) {{option.option}}
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-12 control-block">
+      <button class="btn btn-secondary prev" (click)="prev()">Prev</button>
+      <button class="btn btn-primary next" *ngIf="!enableSubmit" (click)="next()">Next</button>
+      <button class="btn btn-success success" *ngIf="enableSubmit" (click)="submit()">Submit</button>
+    </div>
+  </div>
+
+  <div class="row result-wrapper" *ngIf="visibleBlock == 'result'">
+    <h1>Points Scored : {{result.score}} %</h1>
+    <app-pie-chart class="col-12 chart-container" [data]="result.data"></app-pie-chart>
+  </div>
+
+  <!-- dialog -->
+  <div class="dialog-wrapper" *ngIf="warningDialog">
+    <div class="dialog">
+      <h3>You moved out of MCQ window</h3>
+      <h5>Submitting your exam</h5>
+    </div>
+  </div>
+
+</div>
