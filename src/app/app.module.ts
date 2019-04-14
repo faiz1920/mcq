@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AppService } from './app.service';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 
 @NgModule({
@@ -21,7 +20,7 @@ import { PieChartComponent } from './pie-chart/pie-chart.component';
     ChartsModule,
     FormsModule
   ],
-  providers: [AppService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

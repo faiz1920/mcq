@@ -1,6 +1,5 @@
 
 import { Component, OnInit } from '@angular/core';
-import { AppService } from './app.service';
 
 import questions from '../data/questions.json';
 import answer from '../data/answers.json';
@@ -22,13 +21,11 @@ export class AppComponent implements OnInit {
     data: [],
     score: '0.0'
   };
-
   timer = {
     hours: 1,
     minutes: 0,
     seconds: 0
   };
-
   totalTime: number = 0;
   interval;
   timerClass: string = 'bg-success';
@@ -40,13 +37,12 @@ export class AppComponent implements OnInit {
   requiredError: boolean = false;
   warningDialog: boolean = false;
 
-  constructor(private appService: AppService) { }
+  constructor() { }
 
   ngOnInit() {
     this.answer = answer.answer;
     this.questions = questions.questions;
     this.totalTime = (this.timer.hours * 60 * 60) + (this.timer.minutes * 60) + this.timer.seconds;
-
     // checking window events
     window.onblur = this.windowMinimized.bind(this);
   }
@@ -113,7 +109,6 @@ export class AppComponent implements OnInit {
       this.unAttended = [];
       this.questions.forEach((e, i) => {
         if (e.answer) {
-          // let x = this.getIndex(e.answer.aId, this.answer);
           if (this.getIndex(e.answer.aId, this.answer)) {
             this.result.correct.push(e);
           } else {
@@ -125,7 +120,6 @@ export class AppComponent implements OnInit {
       });
 
       this.result.data = [this.result.correct.length, this.result.wrong.length, this.result.unattended.length]
-
       this.result.score = ((this.result.correct.length / this.questions.length) * 100).toFixed(2);
       clearInterval(this.interval);
       this.visibleBlock = 'result';
@@ -142,7 +136,6 @@ export class AppComponent implements OnInit {
   }
 
   getIndex(aId, array) {
-    // for (var i = 0; i < array.length; i++) {
     for (let i in array) {
       if (array[i].aId === aId) {
         return true;
@@ -165,7 +158,6 @@ export class AppComponent implements OnInit {
           this.timer.minutes = 59;
         }
         if (this.timer.hours < 0) {
-          // alert('Time Up');
           this.timer.hours = 0;
           this.timer.minutes = 0;
           this.timer.seconds = 0;
